@@ -57,7 +57,7 @@ git push
 
 ## Current rules
 - repo must live in org `hellnetsh`
-- repo must expose `k8s/kustomization.yaml`
+- repo must include `idp/enabled.yaml`
 - app is created with the repo name
 - namespace defaults to the repo name
 - sync is automated with prune + self-heal
@@ -75,6 +75,8 @@ Each app repo must include:
 
 ```text
 repo/
+  idp/
+    enabled.yaml
   k8s/
     kustomization.yaml
     namespace.yaml
@@ -87,6 +89,11 @@ repo/
 - `argocd-demo`
 - `whoami-demo`
 - `echo-demo`
+
+## n8n
+- namespace pre-created in cluster: `n8n`
+- DNS already points `n8n.hellnet.com.br` to the gateway
+- when moving n8n out of LXC, create a repo with `idp/enabled.yaml` and `k8s/`
 
 ## Onboarding a new app
 1. create a repo in `hellnetsh`

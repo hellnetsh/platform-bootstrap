@@ -8,6 +8,8 @@ Each app repo under `hellnetsh` must provide:
 
 ```text
 repo/
+  idp/
+    enabled.yaml
   k8s/
     kustomization.yaml
     namespace.yaml
@@ -18,7 +20,7 @@ repo/
 
 ## Required rules
 - repo must live in org `hellnetsh`
-- repo must have `k8s/kustomization.yaml`
+- repo must have `idp/enabled.yaml`
 - app name should match repo name
 - namespace should default to repo name
 - app must be safe for Argo CD auto-sync

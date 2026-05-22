@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - appproject.yaml
   - applicationset.yaml
+  - n8n-namespace.yaml
