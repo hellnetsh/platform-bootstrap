@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: hellnetsh-apps
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions:
+    - missingkey=error
+  generators:
+    - scmProvider:
+        cloneProtocol: https
+        github:
+          organization: hellnetsh
+          tokenRef:
+            secretName: github-hellnetsh-repo-creds
+            key: password
+        filters:
+          - repositoryMatch: '^(?!platform-bootstrap$).+'
+            pathsExist:
+              - k8s/kustomization.yaml
+  template:
+    metadata:
+      name: '{{ .repository }}'
+    spec:
+      project: hellnetsh
+      source:
+        repoURL: '{{ .url }}'
+        targetRevision: '{{ .branch }}'
+        path: k8s
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{ .repository }}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
