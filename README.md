@@ -34,6 +34,17 @@ Cluster
   └─ synced automatically by Argo CD
 ```
 
+## Diagram
+```mermaid
+flowchart LR
+  dev[Developer] -->|git push| gh[GitHub repo]
+  gh -->|SCM scan| aset[ApplicationSet]
+  aset -->|create/update| app[Argo CD Application]
+  app -->|sync| kube[Kubernetes cluster]
+  kube -->|expose| gw[Cilium Gateway]
+  gw --> users[Users / Browser]
+```
+
 ## Flow
 ```text
 git push
@@ -87,3 +98,11 @@ repo/
 - `repo-creds` lives in Argo CD namespace, not in this repo
 - GitHub PAT is only for repo discovery / clone access
 - this repo is the bootstrap layer, not the workload layer
+
+## Bootstrap path
+1. create or update an app repo under `hellnetsh`
+2. ensure `k8s/kustomization.yaml` exists
+3. push to `main`
+4. ApplicationSet discovers it
+5. Argo CD creates the Application
+6. Argo CD syncs it automatically
