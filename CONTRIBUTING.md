@@ -27,7 +27,7 @@ repo/
 - keep manifests minimal
 - prefer Kustomize
 - use `HTTPRoute` only for web apps
-- keep secrets out of git
+- keep secrets out of git; source them from Vault via ESO
 
 ## Naming
 - repo: `something-demo`

@@ -4,4 +4,6 @@ kind: Kustomization
 resources:
   - appproject.yaml
   - applicationset.yaml
+  - vault-clustersecretstore.yaml
+  - argocd-repo-creds-externalsecret.yaml
   - n8n-namespace.yaml

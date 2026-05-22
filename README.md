@@ -101,6 +101,7 @@ repo/
 
 ## Notes
 - `repo-creds` lives in Argo CD namespace, not in this repo
+- secrets come from Vault through External Secrets Operator
 - GitHub PAT is only for repo discovery / clone access
 - this repo is the bootstrap layer, not the workload layer
 
