@@ -10,7 +10,7 @@ spec:
   generators:
     - scmProvider:
         cloneProtocol: https
-      github:
+        github:
           organization: hellnetsh
           tokenRef:
             secretName: github-hellnetsh-repo-creds
