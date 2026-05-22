@@ -10,13 +10,13 @@ spec:
   generators:
     - scmProvider:
         cloneProtocol: https
-        github:
+      github:
           organization: hellnetsh
           tokenRef:
             secretName: github-hellnetsh-repo-creds
             key: password
         filters:
-          - repositoryMatch: '^(?!platform-bootstrap$).+'
+          - repositoryMatch: '^.*$'
             pathsExist:
               - k8s/kustomization.yaml
   template:
